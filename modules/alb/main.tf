@@ -61,6 +61,8 @@ resource "aws_lb_target_group" "service" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 
+  deregistration_delay = each.value.deregistration_delay
+
   health_check {
     protocol            = "HTTP"
     path                = each.value.health_check_path

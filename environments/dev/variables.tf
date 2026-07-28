@@ -135,6 +135,8 @@ variable "services" {
     health_check_interval            = optional(number, 30)
     health_check_timeout             = optional(number, 5)
     health_check_matcher             = optional(string, "200-399")
+
+    deregistration_delay = optional(number, 300)
   }))
 
   default = [
