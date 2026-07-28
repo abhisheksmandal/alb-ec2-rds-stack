@@ -11,11 +11,11 @@ locals {
   # target group, on that service's own port.
   service_instance_pairs = flatten([
     for s in var.services : [
-      for id in module.compute.instance_ids : {
-        key         = "${s.name}-${id}"
+      for idx in range(var.ec2_instance_count) : {
+        key         = "${s.name}-${idx}"
         service     = s.name
         port        = s.port
-        instance_id = id
+        instance_id = module.compute.instance_ids[idx]
       }
     ]
   ])
